@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public record BookingBestProfitResult(
+public record BookingBestProfitResponse(
         @JsonProperty("request_ids") List<String> requestIds,
         @JsonProperty("total_profit") double totalProfit,
         @JsonProperty("avg_night") double averageProfitPerNight,

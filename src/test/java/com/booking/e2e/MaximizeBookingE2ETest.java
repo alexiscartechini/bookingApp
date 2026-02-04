@@ -1,6 +1,6 @@
 package com.booking.e2e;
 
-import com.booking.infrastructure.controller.dto.BookingBestProfitResult;
+import com.booking.infrastructure.controller.dto.BookingBestProfitResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -54,13 +54,13 @@ class MaximizeBookingE2ETest {
         );
 
         // when
-        ResponseEntity<BookingBestProfitResult> response =
-                restTemplate.postForEntity("/maximize", request, BookingBestProfitResult.class);
+        ResponseEntity<BookingBestProfitResponse> response =
+                restTemplate.postForEntity("/maximize", request, BookingBestProfitResponse.class);
 
         // then
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
-        BookingBestProfitResult result = response.getBody();
+        BookingBestProfitResponse result = response.getBody();
         assertThat(result).isNotNull();
 
         assertThat(result.requestIds())
