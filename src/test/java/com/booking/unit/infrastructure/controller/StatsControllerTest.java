@@ -1,9 +1,10 @@
 package com.booking.unit.infrastructure.controller;
 
+import com.booking.domain.BookingProfitStats;
 import com.booking.domain.BookingRequest;
 import com.booking.domain.port.BookingProfitStatsCalculator;
-import com.booking.infrastructure.controller.dto.BookingProfitStatsResponse;
 import com.booking.infrastructure.controller.StatsController;
+import com.booking.infrastructure.controller.dto.BookingProfitStatsResponse;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -26,8 +27,10 @@ class StatsControllerTest {
                 new BookingRequest("atropote_AA930", LocalDate.of(2020, 1, 4), 4, 150, 6),
                 new BookingRequest("acme_AAAAA", LocalDate.of(2020, 1, 10), 4, 160, 30));
 
-        BookingProfitStatsResponse expected = new BookingProfitStatsResponse(10, 8, 12);
-        when(bookingProfitStatsCalculator.calculateStats(bookingRequest)).thenReturn(expected);
+        BookingProfitStats bookingProfitStats = new BookingProfitStats(10, 8, 12);
+        when(bookingProfitStatsCalculator.calculateStats(bookingRequest)).thenReturn(bookingProfitStats);
+
+        BookingProfitStatsResponse expected = new BookingProfitStatsResponse(10,8,12);
         assertEquals(expected, statsController.stats(bookingRequest));
     }
 }

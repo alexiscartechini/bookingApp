@@ -1,9 +1,9 @@
 package com.booking.unit.application.service;
 
+import com.booking.domain.BookingProfitStats;
 import com.booking.domain.BookingRequest;
 import com.booking.domain.exception.InvalidStatsRequestException;
 import com.booking.domain.port.BookingProfitStatsCalculator;
-import com.booking.infrastructure.controller.dto.BookingProfitStatsResponse;
 import com.booking.application.service.BookingProfitStatsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,10 +33,10 @@ class BookingProfitStatsServiceTest {
                 new BookingRequest("trivoltio_ZX69", LocalDate.of(2020, 1, 7), 1, 49, 21)
         );
 
-        BookingProfitStatsResponse result = bookingProfitStatsCalculator.calculateStats(bookingRequests);
-        assertEquals(10.80, result.avgNight());
-        assertEquals(12.1, result.maxNight());
-        assertEquals(10, result.minNight());
+        BookingProfitStats result = bookingProfitStatsCalculator.calculateStats(bookingRequests);
+        assertEquals(10.80, result.averagePerNight());
+        assertEquals(12.1, result.maxPerNight());
+        assertEquals(10, result.minPerNight());
     }
 
     @ParameterizedTest
