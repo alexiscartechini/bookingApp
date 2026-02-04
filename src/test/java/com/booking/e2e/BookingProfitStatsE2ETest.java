@@ -49,8 +49,8 @@ class BookingProfitStatsE2ETest {
         BookingProfitStatsResponse result = response.getBody();
         assertThat(result).isNotNull();
 
-        assertThat(result.averageProfitPerNight()).isEqualTo(8.29);
-        assertThat(result.minimumProfitPerNight()).isEqualTo(8);
-        assertThat(result.maximumProfitPerNight()).isEqualTo(8.58);
+        assertThat(result.avgNight()).isEqualTo(8.29);
+        assertThat(result.minNight()).isEqualTo(8);
+        assertThat(result.maxNight()).isEqualTo(8.58);
     }
 }
