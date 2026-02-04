@@ -1,8 +1,8 @@
-package com.booking.unit.service;
+package com.booking.unit.application.service;
 
 import com.booking.domain.BookingRequest;
 import com.booking.domain.port.MaximizeBookingProfitPort;
-import com.booking.service.MaximizeBookingProfitService;
+import com.booking.application.service.MaximizeBookingProfitService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class MaximizeProfitServiceTest {
+class MaximizeBookingProfitServiceTest {
 
     private List<BookingRequest> bookingRequests;
     private MaximizeBookingProfitPort maximizeBookingProfitPort;

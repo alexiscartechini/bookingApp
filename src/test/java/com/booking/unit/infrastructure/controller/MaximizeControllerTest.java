@@ -1,8 +1,8 @@
 package com.booking.unit.infrastructure.controller;
 
-import com.booking.application.MaximizeBookingProfitUseCase;
+import com.booking.application.usecase.MaximizeBookingProfitUseCase;
 import com.booking.domain.BookingRequest;
-import com.booking.dto.BookingBestProfitResult;
+import com.booking.infrastructure.controller.dto.BookingBestProfitResult;
 import com.booking.infrastructure.controller.MaximizeController;
 import org.junit.jupiter.api.Test;
 

@@ -2,7 +2,7 @@ package com.booking.infrastructure.controller;
 
 import com.booking.domain.BookingRequest;
 import com.booking.domain.port.BookingProfitStatsCalculator;
-import com.booking.dto.BookingProfitStats;
+import com.booking.infrastructure.controller.dto.BookingProfitStats;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

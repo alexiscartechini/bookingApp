@@ -1,8 +1,8 @@
 package com.booking.infrastructure.controller;
 
-import com.booking.application.MaximizeBookingProfitUseCase;
+import com.booking.application.usecase.MaximizeBookingProfitUseCase;
 import com.booking.domain.BookingRequest;
-import com.booking.dto.BookingBestProfitResult;
+import com.booking.infrastructure.controller.dto.BookingBestProfitResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

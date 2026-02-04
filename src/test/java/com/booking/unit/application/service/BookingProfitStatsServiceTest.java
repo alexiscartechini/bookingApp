@@ -1,10 +1,10 @@
-package com.booking.unit.service;
+package com.booking.unit.application.service;
 
 import com.booking.domain.BookingRequest;
 import com.booking.domain.exception.InvalidStatsRequestException;
 import com.booking.domain.port.BookingProfitStatsCalculator;
-import com.booking.dto.BookingProfitStats;
-import com.booking.service.BookingProfitStatsService;
+import com.booking.infrastructure.controller.dto.BookingProfitStats;
+import com.booking.application.service.BookingProfitStatsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +16,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class StatsServiceTest {
+class BookingProfitStatsServiceTest {
 
     private BookingProfitStatsCalculator bookingProfitStatsCalculator;
 

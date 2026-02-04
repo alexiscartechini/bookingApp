@@ -1,6 +1,6 @@
 package com.booking.e2e;
 
-import com.booking.dto.BookingProfitStats;
+import com.booking.infrastructure.controller.dto.BookingProfitStats;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

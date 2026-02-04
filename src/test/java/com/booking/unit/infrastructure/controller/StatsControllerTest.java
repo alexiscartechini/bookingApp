@@ -2,7 +2,7 @@ package com.booking.unit.infrastructure.controller;
 
 import com.booking.domain.BookingRequest;
 import com.booking.domain.port.BookingProfitStatsCalculator;
-import com.booking.dto.BookingProfitStats;
+import com.booking.infrastructure.controller.dto.BookingProfitStats;
 import com.booking.infrastructure.controller.StatsController;
 import org.junit.jupiter.api.Test;
 

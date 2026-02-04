@@ -1,9 +1,9 @@
-package com.booking.service;
+package com.booking.application.service;
 
 import com.booking.domain.BookingRequest;
 import com.booking.domain.exception.InvalidStatsRequestException;
 import com.booking.domain.port.BookingProfitStatsCalculator;
-import com.booking.dto.BookingProfitStats;
+import com.booking.infrastructure.controller.dto.BookingProfitStats;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

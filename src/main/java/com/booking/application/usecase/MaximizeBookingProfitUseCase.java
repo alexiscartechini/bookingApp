@@ -1,10 +1,10 @@
-package com.booking.application;
+package com.booking.application.usecase;
 
 import com.booking.domain.BookingRequest;
 import com.booking.domain.port.BookingProfitStatsCalculator;
 import com.booking.domain.port.MaximizeBookingProfitPort;
-import com.booking.dto.BookingBestProfitResult;
-import com.booking.dto.BookingProfitStats;
+import com.booking.infrastructure.controller.dto.BookingBestProfitResult;
+import com.booking.infrastructure.controller.dto.BookingProfitStats;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

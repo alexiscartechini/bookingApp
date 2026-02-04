@@ -1,4 +1,4 @@
-package com.booking.service;
+package com.booking.application.service;
 
 import com.booking.domain.BookingRequest;
 import com.booking.domain.port.MaximizeBookingProfitPort;

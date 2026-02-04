@@ -1,7 +1,7 @@
 package com.booking.domain.port;
 
 import com.booking.domain.BookingRequest;
-import com.booking.dto.BookingProfitStats;
+import com.booking.infrastructure.controller.dto.BookingProfitStats;
 
 import java.util.List;
 
