@@ -1,11 +1,11 @@
 package com.booking.domain.port;
 
 import com.booking.domain.BookingRequest;
-import com.booking.infrastructure.controller.dto.BookingProfitStats;
+import com.booking.infrastructure.controller.dto.BookingProfitStatsResponse;
 
 import java.util.List;
 
 public interface BookingProfitStatsCalculator {
 
-    BookingProfitStats calculateStats(List<BookingRequest> bookingRequests);
+    BookingProfitStatsResponse calculateStats(List<BookingRequest> bookingRequests);
 }

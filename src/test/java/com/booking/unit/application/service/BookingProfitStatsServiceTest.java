@@ -3,7 +3,7 @@ package com.booking.unit.application.service;
 import com.booking.domain.BookingRequest;
 import com.booking.domain.exception.InvalidStatsRequestException;
 import com.booking.domain.port.BookingProfitStatsCalculator;
-import com.booking.infrastructure.controller.dto.BookingProfitStats;
+import com.booking.infrastructure.controller.dto.BookingProfitStatsResponse;
 import com.booking.application.service.BookingProfitStatsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ class BookingProfitStatsServiceTest {
                 new BookingRequest("trivoltio_ZX69", LocalDate.of(2020, 1, 7), 1, 49, 21)
         );
 
-        BookingProfitStats result = bookingProfitStatsCalculator.calculateStats(bookingRequests);
+        BookingProfitStatsResponse result = bookingProfitStatsCalculator.calculateStats(bookingRequests);
         assertEquals(10.80, result.averageProfitPerNight());
         assertEquals(12.1, result.maximumProfitPerNight());
         assertEquals(10, result.minimumProfitPerNight());

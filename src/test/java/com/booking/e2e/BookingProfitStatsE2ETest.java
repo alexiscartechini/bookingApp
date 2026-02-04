@@ -1,6 +1,6 @@
 package com.booking.e2e;
 
-import com.booking.infrastructure.controller.dto.BookingProfitStats;
+import com.booking.infrastructure.controller.dto.BookingProfitStatsResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -40,13 +40,13 @@ class BookingProfitStatsE2ETest {
         );
 
         // when
-        ResponseEntity<BookingProfitStats> response =
-                restTemplate.postForEntity("/stats", request, BookingProfitStats.class);
+        ResponseEntity<BookingProfitStatsResponse> response =
+                restTemplate.postForEntity("/stats", request, BookingProfitStatsResponse.class);
 
         // then
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
-        BookingProfitStats result = response.getBody();
+        BookingProfitStatsResponse result = response.getBody();
         assertThat(result).isNotNull();
 
         assertThat(result.averageProfitPerNight()).isEqualTo(8.29);

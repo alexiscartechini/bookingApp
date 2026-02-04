@@ -3,7 +3,7 @@ package com.booking.application.service;
 import com.booking.domain.BookingRequest;
 import com.booking.domain.exception.InvalidStatsRequestException;
 import com.booking.domain.port.BookingProfitStatsCalculator;
-import com.booking.infrastructure.controller.dto.BookingProfitStats;
+import com.booking.infrastructure.controller.dto.BookingProfitStatsResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,13 +14,13 @@ import static java.util.Objects.isNull;
 public class BookingProfitStatsService implements BookingProfitStatsCalculator {
 
     @Override
-    public BookingProfitStats calculateStats(List<BookingRequest> bookingRequests) {
+    public BookingProfitStatsResponse calculateStats(List<BookingRequest> bookingRequests) {
 
         if (isNull(bookingRequests) || bookingRequests.isEmpty()) {
             throw new InvalidStatsRequestException("Cannot calculate stats for empty booking list");
         }
 
-        return new BookingProfitStats(getAverageProfitPerNight(bookingRequests),
+        return new BookingProfitStatsResponse(getAverageProfitPerNight(bookingRequests),
                 getMinimumProfitPerNight(bookingRequests),
                 getMaximumProfitPerNight(bookingRequests));
     }
