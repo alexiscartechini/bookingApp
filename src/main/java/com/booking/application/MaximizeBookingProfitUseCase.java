@@ -1,0 +1,30 @@
+package com.booking.application;
+
+import com.booking.domain.BookingRequest;
+import com.booking.domain.port.BookingProfitStatsCalculator;
+import com.booking.domain.port.MaximizeBookingProfitPort;
+import com.booking.dto.BookingBestProfitResult;
+import com.booking.dto.BookingProfitStats;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class MaximizeBookingProfitUseCase {
+
+    private final BookingProfitStatsCalculator bookingProfitStatsCalculator;
+    private final MaximizeBookingProfitPort maximizeBookingProfitPort;
+
+    public MaximizeBookingProfitUseCase(BookingProfitStatsCalculator bookingProfitStatsCalculator, MaximizeBookingProfitPort maximizeBookingProfitPort) {
+        this.bookingProfitStatsCalculator = bookingProfitStatsCalculator;
+        this.maximizeBookingProfitPort = maximizeBookingProfitPort;
+    }
+
+    public BookingBestProfitResult execute(List<BookingRequest> bookingRequests) {
+        List<BookingRequest> bestProfitCombination = maximizeBookingProfitPort.selectBestCombination(bookingRequests);
+        BookingProfitStats bookingProfitStats = bookingProfitStatsCalculator.calculateStats(bestProfitCombination);
+        List<String> requestIds = bestProfitCombination.stream().map(BookingRequest::requestId).toList();
+        double totalProfit = bestProfitCombination.stream().mapToDouble(BookingRequest::getTotalProfit).sum();
+        return new BookingBestProfitResult(requestIds, totalProfit, bookingProfitStats.averageProfitPerNight(), bookingProfitStats.minimumProfitPerNight(), bookingProfitStats.maximumProfitPerNight());
+    }
+}
