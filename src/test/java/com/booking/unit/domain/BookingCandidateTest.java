@@ -1,6 +1,6 @@
 package com.booking.unit.domain;
 
-import com.booking.domain.BookingRequest;
+import com.booking.domain.BookingCandidate;
 import com.booking.domain.exception.InvalidBookingRequestException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,11 +13,11 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BookingRequestTest {
+class BookingCandidateTest {
 
     private static final String REQUEST_ID = "bookata_XY222";
     private static final LocalDate CHECK_IN = LocalDate.of(2019, 12, 28);
-    private BookingRequest bookingRequest;
+    private BookingCandidate bookingCandidate;
 
     public static Stream<Arguments> bookingRequestWithZeroValues() {
         return Stream.of(
@@ -34,40 +34,40 @@ class BookingRequestTest {
 
     @BeforeEach
     void setup() {
-        bookingRequest = new BookingRequest("bookata_XY123", LocalDate.of(2020, 1, 1), 5, 200, 20);
+        bookingCandidate = new BookingCandidate("bookata_XY123", LocalDate.of(2020, 1, 1), 5, 200, 20);
     }
 
     @Test
     void shouldReturnTotalProfit() {
-        assertEquals(40.0, bookingRequest.getTotalProfit());
+        assertEquals(40.0, bookingCandidate.getTotalProfit());
     }
 
     @Test
     void shouldReturnProfitPerNight() {
-        assertEquals(8.0, bookingRequest.getProfitPerNight());
+        assertEquals(8.0, bookingCandidate.getProfitPerNight());
     }
 
     @Test
     void shouldReturnCheckOutDate() {
-        assertEquals(LocalDate.of(2020, 1, 6), bookingRequest.getCheckOut());
+        assertEquals(LocalDate.of(2020, 1, 6), bookingCandidate.getCheckOut());
     }
 
     @Test
     void shouldReturnTrueWhenDatesOverlaps() {
-        BookingRequest secondDate = new BookingRequest(REQUEST_ID, LocalDate.of(2020, 1, 5), 3, 200, 20);
-        assertTrue(bookingRequest.overlaps(secondDate));
+        BookingCandidate secondDate = new BookingCandidate(REQUEST_ID, LocalDate.of(2020, 1, 5), 3, 200, 20);
+        assertTrue(bookingCandidate.overlaps(secondDate));
     }
 
     @Test
     void shouldReturnFalseWhenDatesDoNotOverlaps() {
-        BookingRequest secondDate = new BookingRequest(REQUEST_ID, CHECK_IN, 3, 200, 20);
-        assertFalse(bookingRequest.overlaps(secondDate));
+        BookingCandidate secondDate = new BookingCandidate(REQUEST_ID, CHECK_IN, 3, 200, 20);
+        assertFalse(bookingCandidate.overlaps(secondDate));
     }
 
     @ParameterizedTest
     @MethodSource("bookingRequestWithZeroValues")
     void shouldReturnInvalidBookingRequestExceptionWhenValuesAreZero(int nights, double sellingRate, String message) {
-        InvalidBookingRequestException exception = assertThrows(InvalidBookingRequestException.class, () -> new BookingRequest(REQUEST_ID, CHECK_IN, nights, sellingRate, 20));
+        InvalidBookingRequestException exception = assertThrows(InvalidBookingRequestException.class, () -> new BookingCandidate(REQUEST_ID, CHECK_IN, nights, sellingRate, 20));
         assertEquals(
                 message,
                 exception.getMessage()
@@ -77,7 +77,7 @@ class BookingRequestTest {
     @ParameterizedTest
     @MethodSource("bookingRequestWithNullOrEmptyValues")
     void shouldReturnInvalidBookingRequestExceptionWhenValuesAreNullOrEmpty(String requestId, LocalDate checkIn, String message) {
-        InvalidBookingRequestException exception = assertThrows(InvalidBookingRequestException.class, () -> new BookingRequest(requestId, checkIn, 3, 200, 20));
+        InvalidBookingRequestException exception = assertThrows(InvalidBookingRequestException.class, () -> new BookingCandidate(requestId, checkIn, 3, 200, 20));
         assertEquals(
                 message,
                 exception.getMessage()
@@ -86,7 +86,7 @@ class BookingRequestTest {
 
     @Test
     void shouldReturnInvalidBookingRequestExceptionWhenMarginIsNegative() {
-        InvalidBookingRequestException exception = assertThrows(InvalidBookingRequestException.class, () -> new BookingRequest(REQUEST_ID, CHECK_IN, 3, 200, -1));
+        InvalidBookingRequestException exception = assertThrows(InvalidBookingRequestException.class, () -> new BookingCandidate(REQUEST_ID, CHECK_IN, 3, 200, -1));
         assertEquals(
                 "margin value cannot be negative",
                 exception.getMessage()

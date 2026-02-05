@@ -1,6 +1,6 @@
 package com.booking.infrastructure.controller;
 
-import com.booking.domain.BookingRequest;
+import com.booking.domain.BookingCandidate;
 import com.booking.domain.port.BookingProfitStatsCalculator;
 import com.booking.infrastructure.controller.dto.BookingProfitStatsResponse;
 import com.booking.infrastructure.controller.mapper.BookingProfitStatsMapper;
@@ -22,7 +22,7 @@ public class StatsController {
     }
 
     @PostMapping
-    public BookingProfitStatsResponse stats(@RequestBody List<BookingRequest> bookingRequests) {
-        return BookingProfitStatsMapper.toResponse(bookingProfitStatsCalculator.calculateStats(bookingRequests));
+    public BookingProfitStatsResponse stats(@RequestBody List<BookingCandidate> bookingCandidates) {
+        return BookingProfitStatsMapper.toResponse(bookingProfitStatsCalculator.calculateStats(bookingCandidates));
     }
 }

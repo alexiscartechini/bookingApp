@@ -1,6 +1,6 @@
 package com.booking.application.service;
 
-import com.booking.domain.BookingRequest;
+import com.booking.domain.BookingCandidate;
 import com.booking.domain.port.MaximizeBookingProfitPort;
 import org.springframework.stereotype.Service;
 
@@ -12,22 +12,22 @@ import java.util.List;
 public class MaximizeBookingProfitService implements MaximizeBookingProfitPort {
 
     @Override
-    public List<BookingRequest> selectBestCombination(List<BookingRequest> bookings) {
-        List<BookingRequest> orderedBooking = orderByCheckIn(bookings);
-        List<List<BookingRequest>> validCombinations = generateValidCombinations(orderedBooking);
+    public List<BookingCandidate> selectBestCombination(List<BookingCandidate> bookings) {
+        List<BookingCandidate> orderedBooking = orderByCheckIn(bookings);
+        List<List<BookingCandidate>> validCombinations = generateValidCombinations(orderedBooking);
         return getHigherProfitOption(validCombinations);
     }
 
-    private List<List<BookingRequest>> generateValidCombinations(List<BookingRequest> bookings) {
-        List<List<BookingRequest>> combinations = new ArrayList<>();
+    private List<List<BookingCandidate>> generateValidCombinations(List<BookingCandidate> bookings) {
+        List<List<BookingCandidate>> combinations = new ArrayList<>();
         combinations.add(List.of());
 
-        for (BookingRequest booking : bookings) {
-            List<List<BookingRequest>> partialList = new ArrayList<>();
+        for (BookingCandidate booking : bookings) {
+            List<List<BookingCandidate>> partialList = new ArrayList<>();
 
-            for (List<BookingRequest> existing : combinations) {
+            for (List<BookingCandidate> existing : combinations) {
                 if (!isOverlapped(existing, booking)) {
-                    List<BookingRequest> copy = new ArrayList<>(existing);
+                    List<BookingCandidate> copy = new ArrayList<>(existing);
                     copy.add(booking);
                     partialList.add(copy);
                 }
@@ -37,19 +37,19 @@ public class MaximizeBookingProfitService implements MaximizeBookingProfitPort {
         return combinations;
     }
 
-    private List<BookingRequest> getHigherProfitOption(List<List<BookingRequest>> allCombinations) {
+    private List<BookingCandidate> getHigherProfitOption(List<List<BookingCandidate>> allCombinations) {
         return allCombinations.stream().max(Comparator.comparing(this::getTotalFromList)).orElse(List.of());
     }
 
-    private boolean isOverlapped(List<BookingRequest> firstDateList, BookingRequest secondDate) {
+    private boolean isOverlapped(List<BookingCandidate> firstDateList, BookingCandidate secondDate) {
         return firstDateList.stream().anyMatch(firstDate -> (firstDate.overlaps(secondDate)));
     }
 
-    private List<BookingRequest> orderByCheckIn(List<BookingRequest> bookingRequests) {
-        return bookingRequests.stream().sorted(Comparator.comparing(BookingRequest::checkIn)).toList();
+    private List<BookingCandidate> orderByCheckIn(List<BookingCandidate> bookingCandidates) {
+        return bookingCandidates.stream().sorted(Comparator.comparing(BookingCandidate::checkIn)).toList();
     }
 
-    private double getTotalFromList(List<BookingRequest> bookingRequestList) {
-        return bookingRequestList.stream().mapToDouble(BookingRequest::getTotalProfit).sum();
+    private double getTotalFromList(List<BookingCandidate> bookingCandidateList) {
+        return bookingCandidateList.stream().mapToDouble(BookingCandidate::getTotalProfit).sum();
     }
 }

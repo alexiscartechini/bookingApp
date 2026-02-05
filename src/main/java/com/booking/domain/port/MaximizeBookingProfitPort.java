@@ -1,9 +1,9 @@
 package com.booking.domain.port;
 
-import com.booking.domain.BookingRequest;
+import com.booking.domain.BookingCandidate;
 
 import java.util.List;
 
 public interface MaximizeBookingProfitPort {
-    List<BookingRequest> selectBestCombination(List<BookingRequest> bookings);
+    List<BookingCandidate> selectBestCombination(List<BookingCandidate> bookings);
 }

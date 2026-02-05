@@ -7,12 +7,12 @@ import java.time.LocalDate;
 
 import static java.util.Objects.isNull;
 
-public record BookingRequest(@JsonProperty("request_id") String requestId, @JsonProperty("check_in") LocalDate checkIn,
-                             int nights, @JsonProperty("selling_rate") double sellingRate, double margin) {
+public record BookingCandidate(@JsonProperty("request_id") String requestId, @JsonProperty("check_in") LocalDate checkIn,
+                               int nights, @JsonProperty("selling_rate") double sellingRate, double margin) {
 
     private static final double PERCENTAGE = 0.01;
 
-    public BookingRequest {
+    public BookingCandidate {
         if (isNull(requestId) || requestId.isBlank())
             throw new InvalidBookingRequestException("request_id value cannot be empty");
         if (isNull(checkIn)) throw new InvalidBookingRequestException("check_in value cannot be empty");
@@ -34,7 +34,7 @@ public record BookingRequest(@JsonProperty("request_id") String requestId, @Json
         return checkIn.plusDays(nights);
     }
 
-    public boolean overlaps(BookingRequest secondDate) {
+    public boolean overlaps(BookingCandidate secondDate) {
         return this.checkIn().isBefore(secondDate.getCheckOut())
                 && secondDate.checkIn().isBefore(this.getCheckOut());
     }

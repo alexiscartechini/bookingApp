@@ -1,7 +1,7 @@
 package com.booking.infrastructure.controller;
 
 import com.booking.application.usecase.MaximizeBookingProfitUseCase;
-import com.booking.domain.BookingRequest;
+import com.booking.domain.BookingCandidate;
 import com.booking.infrastructure.controller.dto.BookingBestProfitResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +21,7 @@ public class MaximizeController {
     }
 
     @PostMapping
-    public BookingBestProfitResponse getBestProfitCombination(@RequestBody List<BookingRequest> bookingRequests) {
-        return maximizeBookingProfitUseCase.execute(bookingRequests);
+    public BookingBestProfitResponse getBestProfitCombination(@RequestBody List<BookingCandidate> bookingCandidates) {
+        return maximizeBookingProfitUseCase.execute(bookingCandidates);
     }
 }
