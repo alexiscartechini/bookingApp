@@ -1,14 +1,12 @@
 package com.booking.domain;
 
 import com.booking.domain.exception.InvalidBookingRequestException;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
 
 import static java.util.Objects.isNull;
 
-public record BookingCandidate(@JsonProperty("request_id") String requestId, @JsonProperty("check_in") LocalDate checkIn,
-                               int nights, @JsonProperty("selling_rate") double sellingRate, double margin) {
+public record BookingCandidate(String requestId, LocalDate checkIn, int nights, double sellingRate, double margin) {
 
     private static final double PERCENTAGE = 0.01;
 

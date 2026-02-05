@@ -3,7 +3,9 @@ package com.booking.infrastructure.controller;
 import com.booking.domain.BookingCandidate;
 import com.booking.domain.port.BookingProfitStatsCalculator;
 import com.booking.infrastructure.controller.dto.BookingProfitStatsResponse;
+import com.booking.infrastructure.controller.dto.BookingRequest;
 import com.booking.infrastructure.controller.mapper.BookingProfitStatsMapper;
+import com.booking.infrastructure.controller.mapper.BookingRequestMapper;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +24,11 @@ public class StatsController {
     }
 
     @PostMapping
-    public BookingProfitStatsResponse stats(@RequestBody List<BookingCandidate> bookingCandidates) {
+    public BookingProfitStatsResponse stats(@RequestBody List<BookingRequest> bookingRequests) {
+        List<BookingCandidate> bookingCandidates = bookingRequests.stream()
+                .map(BookingRequestMapper::toDomain)
+                .toList();
+
         return BookingProfitStatsMapper.toResponse(bookingProfitStatsCalculator.calculateStats(bookingCandidates));
     }
 }
