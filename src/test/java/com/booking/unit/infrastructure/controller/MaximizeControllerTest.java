@@ -1,10 +1,12 @@
 package com.booking.unit.infrastructure.controller;
 
 import com.booking.application.usecase.MaximizeBookingProfitUseCase;
+import com.booking.domain.BookingBestProfitResult;
 import com.booking.domain.BookingCandidate;
 import com.booking.infrastructure.controller.dto.BookingBestProfitResponse;
 import com.booking.infrastructure.controller.MaximizeController;
 import com.booking.infrastructure.controller.dto.BookingRequest;
+import com.booking.infrastructure.controller.mapper.BookingBestProfitMapper;
 import com.booking.infrastructure.controller.mapper.BookingRequestMapper;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +23,7 @@ class MaximizeControllerTest {
     private final MaximizeController maximizeController = new MaximizeController(maximizeBookingProfitUseCase);
 
     @Test
-    void shouldReturnBookingResult() {
+    void shouldReturnBookingResponse() {
         List<BookingRequest> bookingRequests = List.of(
                 new BookingRequest("bookata_XY123", LocalDate.of(2020, 1, 1), 5, 200, 20),
                 new BookingRequest("kayete_PP234", LocalDate.of(2020, 1, 4), 4, 156, 5),
@@ -32,9 +34,9 @@ class MaximizeControllerTest {
                 .map(BookingRequestMapper::toDomain)
                 .toList();
 
-        BookingBestProfitResponse expected = new BookingBestProfitResponse(List.of("bookata_XY123", "acme_AAAAA"), 88, 10, 8, 12);
-
-        when(maximizeBookingProfitUseCase.execute(bookingCandidates)).thenReturn(expected);
+        BookingBestProfitResult bookingBestProfitResult = new BookingBestProfitResult(List.of("bookata_XY123", "acme_AAAAA"), 88, 10, 8, 12);
+        BookingBestProfitResponse expected = BookingBestProfitMapper.toResponse(bookingBestProfitResult);
+        when(maximizeBookingProfitUseCase.execute(bookingCandidates)).thenReturn(bookingBestProfitResult);
         assertEquals(expected, maximizeController.getBestProfitCombination(bookingRequests));
     }
 }

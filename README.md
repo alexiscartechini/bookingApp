@@ -95,7 +95,7 @@ No local Java or Maven installation is required.
 
 From the root of the project, run:
 ```bash
-    docker build -t booking-api .
+docker build -t booking-api .
 ```
 This command builds the application and packages it into a Docker image.
 
@@ -103,7 +103,7 @@ This command builds the application and packages it into a Docker image.
 
 Once the image is built, start the application with:
 ```bash
-    docker run -p 8080:8080 booking-api
+docker run -p 8080:8080 booking-api
 ```
 The API will be available at:
 ```
@@ -127,13 +127,13 @@ Running tests locally (optional)
 
 If you prefer to run tests without Docker, you can execute:
 ```bash
-    mvn test
+mvn test
 ```
 Test coverage is measured using JaCoCo.
 
 After running the tests, the coverage report is available at:
 ```bash
-    target/site/jacoco/index.html
+target/site/jacoco/index.html
 ```
 ### Postman collection
 

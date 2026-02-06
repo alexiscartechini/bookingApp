@@ -1,10 +1,10 @@
 package com.booking.application.usecase;
 
+import com.booking.domain.BookingBestProfitResult;
 import com.booking.domain.BookingProfitStats;
 import com.booking.domain.BookingCandidate;
 import com.booking.domain.port.BookingProfitStatsCalculator;
 import com.booking.domain.port.MaximizeBookingProfitPort;
-import com.booking.infrastructure.controller.dto.BookingBestProfitResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,11 +20,11 @@ public class MaximizeBookingProfitUseCase {
         this.maximizeBookingProfitPort = maximizeBookingProfitPort;
     }
 
-    public BookingBestProfitResponse execute(List<BookingCandidate> bookingCandidates) {
+    public BookingBestProfitResult execute(List<BookingCandidate> bookingCandidates) {
         List<BookingCandidate> bestProfitCombination = maximizeBookingProfitPort.selectBestCombination(bookingCandidates);
         BookingProfitStats bookingProfitStats = bookingProfitStatsCalculator.calculateStats(bestProfitCombination);
         List<String> requestIds = bestProfitCombination.stream().map(BookingCandidate::requestId).toList();
         double totalProfit = bestProfitCombination.stream().mapToDouble(BookingCandidate::getTotalProfit).sum();
-        return new BookingBestProfitResponse(requestIds, totalProfit, bookingProfitStats.averagePerNight(), bookingProfitStats.minPerNight(), bookingProfitStats.maxPerNight());
+        return new BookingBestProfitResult(requestIds, totalProfit, bookingProfitStats.averagePerNight(), bookingProfitStats.minPerNight(), bookingProfitStats.maxPerNight());
     }
 }

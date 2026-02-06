@@ -1,9 +1,11 @@
 package com.booking.infrastructure.controller;
 
 import com.booking.application.usecase.MaximizeBookingProfitUseCase;
+import com.booking.domain.BookingBestProfitResult;
 import com.booking.domain.BookingCandidate;
 import com.booking.infrastructure.controller.dto.BookingBestProfitResponse;
 import com.booking.infrastructure.controller.dto.BookingRequest;
+import com.booking.infrastructure.controller.mapper.BookingBestProfitMapper;
 import com.booking.infrastructure.controller.mapper.BookingRequestMapper;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +29,8 @@ public class MaximizeController {
         List<BookingCandidate> bookingCandidates = bookingRequests.stream()
                 .map(BookingRequestMapper::toDomain)
                 .toList();
-        return maximizeBookingProfitUseCase.execute(bookingCandidates);
+        BookingBestProfitResult bookingBestProfitResult = maximizeBookingProfitUseCase.execute(bookingCandidates);
+
+        return BookingBestProfitMapper.toResponse(bookingBestProfitResult);
     }
 }
