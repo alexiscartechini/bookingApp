@@ -4,6 +4,7 @@ import com.booking.domain.exception.InvalidBookingRequestException;
 
 import java.time.LocalDate;
 
+import static com.booking.domain.validation.BookingValidationMessages.*;
 import static java.util.Objects.isNull;
 
 public record BookingCandidate(String requestId, LocalDate checkIn, int nights, double sellingRate, double margin) {
@@ -12,12 +13,12 @@ public record BookingCandidate(String requestId, LocalDate checkIn, int nights, 
 
     public BookingCandidate {
         if (isNull(requestId) || requestId.isBlank())
-            throw new InvalidBookingRequestException("request_id value cannot be empty");
-        if (isNull(checkIn)) throw new InvalidBookingRequestException("check_in value cannot be empty");
-        if (nights <= 0) throw new InvalidBookingRequestException("nights value has to be greater than zero");
+            throw new InvalidBookingRequestException(REQUEST_ID_EMPTY);
+        if (isNull(checkIn)) throw new InvalidBookingRequestException(CHECK_IN_EMPTY        );
+        if (nights <= 0) throw new InvalidBookingRequestException(NIGHTS_INVALID);
         if (sellingRate <= 0)
-            throw new InvalidBookingRequestException("selling_rate value has to be greater than zero");
-        if (margin < 0) throw new InvalidBookingRequestException(("margin value cannot be negative"));
+            throw new InvalidBookingRequestException(SELLING_RATE_INVALID);
+        if (margin < 0) throw new InvalidBookingRequestException((MARGIN_NEGATIVE));
     }
 
     public double getTotalProfit() {
