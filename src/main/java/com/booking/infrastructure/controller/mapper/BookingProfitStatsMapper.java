@@ -10,9 +10,9 @@ public class BookingProfitStatsMapper {
 
     public static BookingProfitStatsResponse toResponse(BookingProfitStats bookingProfitStats){
         return  new BookingProfitStatsResponse(
-                bookingProfitStats.averagePerNight(),
-                bookingProfitStats.minPerNight(),
-                bookingProfitStats.maxPerNight()
+                bookingProfitStats.averageProfitPerNight(),
+                bookingProfitStats.minimumProfitPerNight(),
+                bookingProfitStats.maximumProfitPerNight()
         );
     }
 }

@@ -25,6 +25,6 @@ public class MaximizeBookingProfitUseCase {
         BookingProfitStats bookingProfitStats = bookingProfitStatsCalculator.calculateStats(bestProfitCombination);
         List<String> requestIds = bestProfitCombination.stream().map(BookingCandidate::requestId).toList();
         double totalProfit = bestProfitCombination.stream().mapToDouble(BookingCandidate::getTotalProfit).sum();
-        return new BookingBestProfitResult(requestIds, totalProfit, bookingProfitStats.averagePerNight(), bookingProfitStats.minPerNight(), bookingProfitStats.maxPerNight());
+        return new BookingBestProfitResult(requestIds, totalProfit, bookingProfitStats.averageProfitPerNight(), bookingProfitStats.minimumProfitPerNight(), bookingProfitStats.maximumProfitPerNight());
     }
 }

@@ -34,9 +34,9 @@ class BookingProfitStatsServiceTest {
         );
 
         BookingProfitStats result = bookingProfitStatsCalculator.calculateStats(bookingCandidates);
-        assertEquals(10.80, result.averagePerNight());
-        assertEquals(12.1, result.maxPerNight());
-        assertEquals(10, result.minPerNight());
+        assertEquals(10.80, result.averageProfitPerNight());
+        assertEquals(12.1, result.maximumProfitPerNight());
+        assertEquals(10, result.minimumProfitPerNight());
     }
 
     @ParameterizedTest
