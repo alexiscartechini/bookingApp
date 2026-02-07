@@ -1,8 +1,8 @@
 package com.booking.application.usecase;
 
 import com.booking.domain.BookingBestProfitResult;
-import com.booking.domain.BookingProfitStats;
 import com.booking.domain.BookingCandidate;
+import com.booking.domain.BookingProfitStats;
 import com.booking.domain.port.BookingProfitStatsCalculator;
 import com.booking.domain.port.MaximizeBookingProfitPort;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.booking.domain.port;
 
-import com.booking.domain.BookingProfitStats;
 import com.booking.domain.BookingCandidate;
+import com.booking.domain.BookingProfitStats;
 
 import java.util.List;
 

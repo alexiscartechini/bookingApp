@@ -1,7 +1,7 @@
 package com.booking.unit.infrastructure.controller;
 
-import com.booking.domain.BookingProfitStats;
 import com.booking.domain.BookingCandidate;
+import com.booking.domain.BookingProfitStats;
 import com.booking.domain.port.BookingProfitStatsCalculator;
 import com.booking.infrastructure.controller.StatsController;
 import com.booking.infrastructure.controller.dto.BookingProfitStatsResponse;
@@ -36,7 +36,7 @@ class StatsControllerTest {
         BookingProfitStats bookingProfitStats = new BookingProfitStats(10, 8, 12);
         when(bookingProfitStatsCalculator.calculateStats(bookingCandidates)).thenReturn(bookingProfitStats);
 
-        BookingProfitStatsResponse expected = new BookingProfitStatsResponse(10,8,12);
+        BookingProfitStatsResponse expected = new BookingProfitStatsResponse(10, 8, 12);
         assertEquals(expected, statsController.stats(bookingRequests));
     }
 }

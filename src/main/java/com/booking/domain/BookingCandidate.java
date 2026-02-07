@@ -14,7 +14,7 @@ public record BookingCandidate(String requestId, LocalDate checkIn, int nights, 
     public BookingCandidate {
         if (isNull(requestId) || requestId.isBlank())
             throw new InvalidBookingRequestException(REQUEST_ID_EMPTY);
-        if (isNull(checkIn)) throw new InvalidBookingRequestException(CHECK_IN_EMPTY        );
+        if (isNull(checkIn)) throw new InvalidBookingRequestException(CHECK_IN_EMPTY);
         if (nights <= 0) throw new InvalidBookingRequestException(NIGHTS_INVALID);
         if (sellingRate <= 0)
             throw new InvalidBookingRequestException(SELLING_RATE_INVALID);

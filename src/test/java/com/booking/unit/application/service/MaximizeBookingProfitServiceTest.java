@@ -1,8 +1,8 @@
 package com.booking.unit.application.service;
 
+import com.booking.application.service.MaximizeBookingProfitService;
 import com.booking.domain.BookingCandidate;
 import com.booking.domain.port.MaximizeBookingProfitPort;
-import com.booking.application.service.MaximizeBookingProfitService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

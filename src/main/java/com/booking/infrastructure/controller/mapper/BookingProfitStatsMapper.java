@@ -8,8 +8,8 @@ public class BookingProfitStatsMapper {
     private BookingProfitStatsMapper() {
     }
 
-    public static BookingProfitStatsResponse toResponse(BookingProfitStats bookingProfitStats){
-        return  new BookingProfitStatsResponse(
+    public static BookingProfitStatsResponse toResponse(BookingProfitStats bookingProfitStats) {
+        return new BookingProfitStatsResponse(
                 bookingProfitStats.averageProfitPerNight(),
                 bookingProfitStats.minimumProfitPerNight(),
                 bookingProfitStats.maximumProfitPerNight()
